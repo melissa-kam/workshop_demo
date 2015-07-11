@@ -85,8 +85,9 @@ module.exports = function(config) {
     },
     
     coverageReporter: {
-      type : 'lcov',
-      dir : 'coverage/'
+      type : 'lcovonly',
+      dir : 'coverage/',
+      flie: 'results.xml'
     }
   });
 };
