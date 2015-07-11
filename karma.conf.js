@@ -6,7 +6,7 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
     
-    reporters: ['progress', 'jenkins'],
+    reporters: ['progress', 'jenkins', 'coverage'],
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
@@ -39,6 +39,7 @@ module.exports = function(config) {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
       '**/*.coffee': 'coffee',
+      'client/app/**/*.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
@@ -81,6 +82,11 @@ module.exports = function(config) {
     
     jenkinsReporter: {
       outputFile: 'results.xml'
+    },
+    
+    coverageReporter: {
+      type : 'lcov',
+      dir : 'coverage/'
     }
   });
 };
