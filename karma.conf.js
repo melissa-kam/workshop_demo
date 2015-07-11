@@ -5,6 +5,8 @@ module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
+    
+    reporters: ['progress', 'jenkins'],
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
@@ -75,6 +77,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true,
+    
+    jenkinsReporter: {
+      outputFile: 'results.xml'
+    }
   });
 };
