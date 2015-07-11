@@ -1,0 +1,11 @@
+************************
+Raxio Changelog
+Date: 2015-07-11 15:46:35 UTC
+Previous-Version: master
+Current-Version: upstream
+************************
+Commit: 4477b1b11571853690ac52bada4597c2b32210b6
+Author: dimtruck
+Date: Sat Jul 11 10:46:04 2015 -0500
+Message: remove coverage reporter
+
