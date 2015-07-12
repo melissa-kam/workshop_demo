@@ -6,15 +6,19 @@
 exports.config = {
   // The timeout for each script run on the browser. This should be longer
   // than the maximum time your application needs to stabilize between tasks.
+  seleniumServerJar: '/var/lib/jenkins/npm_global/lib/node_modules/protractor/selenium/selenium-server-standalone-2.45.0.jar',
+  seleniumPort: 4444,
+  seleniumArgs: ['-browserTimeout=60'],
+
   allScriptsTimeout: 110000,
 
   // A base URL for your application under test. Calls to protractor.get()
   // with relative paths will be prepended with this.
-  baseUrl: 'http://localhost:' + (process.env.PORT || '9000'),
+  baseUrl: 'http://104.239.245.6/',
 
   // If true, only chromedriver will be started, not a standalone selenium.
   // Tests for browsers other than chrome will not run.
-  chromeOnly: true,
+  //chromeOnly: true,
 
   // list of files / patterns to load in the browser
   specs: [
@@ -31,7 +35,9 @@ exports.config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: {
-    'browserName': 'PhantomJS'
+    'browserName': 'phantomjs',
+    'phantomjs.binary.path': './node_modules/karma-phantomjs-launcher/node_modules/phantomjs/bin/phantomjs',
+
   },
 
   // ----- The test framework -----
@@ -39,8 +45,16 @@ exports.config = {
   // Jasmine and Cucumber are fully supported as a test and assertion framework.
   // Mocha has limited beta support. You will need to include your own
   // assertion framework if working with mocha.
-  framework: 'jasmine',
+  framework: 'jasmine2',
 
+
+  // Options to be passed to Jasmine-node.
+  onPrepare: function() {
+    var jasmineReporters = require('jasmine-reporters');
+    jasmine.getEnv().addReporter(
+      new jasmineReporters.JUnitXmlReporter()
+    );
+  },
   // ----- Options to be passed to minijasminenode -----
   //
   // See the full list at https://github.com/juliemr/minijasminenode
